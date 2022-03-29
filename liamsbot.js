@@ -27,6 +27,6 @@ client.login(DISCORD_TOKEN)
 // rude comment
 client.on('messageCreate', function(msg){
   if(msg.content.toLowerCase().includes('liamsbot')){
-    msg.reply("keep my name out of your whore mouth")
+    msg.reply("keep my name out of your mouth")
   }
 })

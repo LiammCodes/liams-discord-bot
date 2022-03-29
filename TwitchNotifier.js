@@ -9,6 +9,7 @@ class TwitchNotifier {
     this.client = client
     this.twitchName = twitchName
 
+    // different channel for my stream notifications
     if (this.twitchName === "liama6")  {
       this.CHANNEL_ID = process.env.DISCORD_NOTIFICATIONS_ID
     } else {

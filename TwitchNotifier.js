@@ -3,7 +3,7 @@ require('dotenv').config()
 const TwitchAPI = require('node-twitch').default
 const { MessageEmbed, Channel } = require('discord.js')
 
-class TwitchNotifier {
+module.exports = class TwitchNotifier {
   constructor(client, twitchName) {
 
     this.client = client
@@ -26,8 +26,6 @@ class TwitchNotifier {
     this.lastStatus = false
     this.currentStatus = false
     this.offlineCount = 5
-
-    setInterval(() => {this.run()}, 15000)
 
   }
 
@@ -54,7 +52,7 @@ class TwitchNotifier {
         .setColor('#FF3854')
         .setTitle(`${data.title}`)
         .setURL(`https://twitch.tv/${user.login}`)
-        .setDescription(`${user.display_name} is now live on Twitch!`)
+        .setDescription(`<@&696206779419328524> ${user.display_name} is now live on Twitch!`)
         .setThumbnail(`${user.profile_image_url}`)
         .addFields(
           { name: 'Start time:', value: `${live_time}`, inline: true },
@@ -107,10 +105,16 @@ class TwitchNotifier {
           this.offlineCount++
         }
       }
-      console.log(`Status: ${this.currentStatus} \n Offline count: ${this.offlineCount}`)
+      console.log(`Name: ${this.twitchName} \n Live: ${this.currentStatus} \n Offline count: ${this.offlineCount}`)
     })
+  }
+
+  start() {
+    this.interval = setInterval(() => {this.run()}, 15000)
+  }
+
+  stop() {
+    clearInterval(this.interval)
   }
   
 }
-
-module.exports = TwitchNotifier

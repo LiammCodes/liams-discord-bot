@@ -52,7 +52,7 @@ module.exports = class TwitchNotifier {
         .setColor('#FF3854')
         .setTitle(`${data.title}`)
         .setURL(`https://twitch.tv/${user.login}`)
-        .setDescription(`<@&696206779419328524> ${user.display_name} is now live on Twitch!`)
+        .setDescription(`${user.display_name} is now live on Twitch!`)
         .setThumbnail(`${user.profile_image_url}`)
         .addFields(
           { name: 'Start time:', value: `${live_time}`, inline: true },
@@ -61,7 +61,7 @@ module.exports = class TwitchNotifier {
         .setImage(`${data.getThumbnailUrl({width: 1920, height: 1080})}`)
         .setTimestamp()
 
-      notifChannel.send({ embeds: [liveNotificationMsg] })
+      notifChannel.send('@everyone', { embeds: [liveNotificationMsg] })
     }
   }
 

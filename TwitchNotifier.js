@@ -61,7 +61,10 @@ module.exports = class TwitchNotifier {
         .setImage(`${data.getThumbnailUrl({width: 1920, height: 1080})}`)
         .setTimestamp()
 
-      notifChannel.send('@everyone', { embeds: [liveNotificationMsg] })
+      notifChannel.send({
+        content: '@everyone', 
+        embeds: [liveNotificationMsg] 
+      })
     }
   }
 
